@@ -1,92 +1,32 @@
 ﻿using System;
+using System.Text;
+using System.Linq;
 
 namespace ConsoleApp14
 {
     internal class Program
     {
-        static int ac;
-        static int bc;
-
         static void Main(string[] args)
         {
-            int x = 1;
-            int y = 2;
-            int z = 3;
-            int i = 0;
-            int k = 0;
+            Author author1 = new Author("Jack London", new DateTime(1930, 2, 2));
 
-            Console.WriteLine($"x = {x}; y = {y}; z = {z};");
+            Book book1 = new Book("White Fang", 1940, author1);
 
-            Third(x, y, z, out i, out k);
+            Author author2 = new Author("I. Ilf", new DateTime(1907, 1, 1));
+            Author author3 = new Author("E. Petrov", new DateTime(1903, 3, 3));
 
-            Console.WriteLine($"ac = {i};");
-            Console.WriteLine($"bc = {k};");
+            Book book2 = new Book("12 Chairs", 1925, new Author[] { author2, author3 });
 
-            Console.WriteLine($"x = {x}; y = {y}; z = {z};");
-        }
+            Library library = new Library();
 
-        static void First(ref int a, ref int b, int c)
-        {
-            a += c;
+            library.Add(new Book[] { book1, book2 });
 
-            Console.WriteLine($"a + c = {a};");
+            Book search1 = library.SearchByTitle("white fang");
 
-            b += c;
+            Book[] search2 = library.Search("white");
 
-            Console.WriteLine($"b + c = {b};");
-            Console.WriteLine($"a = {a}; b = {b}; c = {c};");
-        }
+            Book[] search3 = library.SearchByAuthor("e. petrov");
 
-        static void Second(int a, int b, int c)
-        {
-            ac = a + c;
-
-            Console.WriteLine($"a + c = {ac};");
-
-            bc = b + c;
-
-            Console.WriteLine($"b + c = {bc};");
-            Console.WriteLine($"a = {a}; b = {b}; c = {c};");
-        }
-
-        static void Third(int a, int b, int c, out int otput1, out int output2)
-        {
-            otput1 = a + c;
-
-            Console.WriteLine($"a + c = {otput1};");
-
-            output2 = b + c;
-
-            Console.WriteLine($"b + c = {output2};");
-            Console.WriteLine($"a = {a}; b = {b}; c = {c};");
-        }
-
-        static int Four(int a, int b, int c)
-        {
-            int r1 = a + c;
-
-            Console.WriteLine($"a + c = {r1};");
-
-            int r2 = b + c;
-
-            Console.WriteLine($"b + c = {r2};");
-            Console.WriteLine($"a = {a}; b = {b}; c = {c};");
-
-            return r1;
-        }
-
-        static int Five(int a, int b, int c)
-        {
-            int r1 = a + c;
-
-            Console.WriteLine($"a + c = {r1};");
-
-            int r2 = b + c;
-
-            Console.WriteLine($"b + c = {r2};");
-            Console.WriteLine($"a = {a}; b = {b}; c = {c};");
-
-            return r1;
         }
     }
 }
