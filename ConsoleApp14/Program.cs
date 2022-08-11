@@ -8,25 +8,34 @@ namespace ConsoleApp14
     {
         static void Main(string[] args)
         {
-            Author author1 = new Author("Jack London", new DateTime(1930, 2, 2));
+            Fraction[] array = new Fraction[]
+            {
+                new Fraction(1, 1),
+                new Fraction(2, 1),
+                new Fraction(3, 1)
+            };
 
-            Book book1 = new Book("White Fang", 1940, author1);
+            Console.WriteLine(Sum(array));
+            Console.WriteLine(Average(array));
+        }
 
-            Author author2 = new Author("I. Ilf", new DateTime(1907, 1, 1));
-            Author author3 = new Author("E. Petrov", new DateTime(1903, 3, 3));
+        static Fraction Sum(Fraction[] source)
+        {
+            Fraction result = new Fraction(0, 1);
 
-            Book book2 = new Book("12 Chairs", 1925, new Author[] { author2, author3 });
+            foreach (Fraction fraction in source)
+            {
+                result += fraction;
+            }
 
-            Library library = new Library();
+            return result;
+        }
 
-            library.Add(new Book[] { book1, book2 });
+        static Fraction Average(Fraction[] source)
+        {
+            Fraction sum = Sum(source);
 
-            Book search1 = library.SearchByTitle("white fang");
-
-            Book[] search2 = library.Search("white");
-
-            Book[] search3 = library.SearchByAuthor("e. petrov");
-
+            return sum / source.Length;
         }
     }
 }
